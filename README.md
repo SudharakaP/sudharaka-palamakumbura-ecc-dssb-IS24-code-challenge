@@ -53,3 +53,11 @@ Some unit tests are run by [Jest](https://jestjs.io/). They can be run with:
 ```
 npm test
 ```
+
+## Demo (Method 1)
+
+[Demo-Challenge.webm](https://github.com/SudharakaP/sudharaka-palamakumbura-ecc-dssb-IS24-code-challenge/assets/12435965/fdd37126-eb4a-4430-81a1-d640aa12a8f2)
+
+## Demo (Method 2)
+
+[demo-2.webm](https://github.com/SudharakaP/sudharaka-palamakumbura-ecc-dssb-IS24-code-challenge/assets/12435965/e3983167-1f78-43fa-9f75-c46eaecfd40a)
