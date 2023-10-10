@@ -83,13 +83,6 @@ module.exports = async options =>
               heartbeatTimeout: 60000,
             },
           },
-          /*
-      ,ghostMode: { // uncomment this part to disable BrowserSync ghostMode; https://github.com/jhipster/generator-jhipster/issues/11116
-        clicks: false,
-        location: false,
-        forms: false,
-        scroll: false
-      } */
         },
         {
           reload: false,
@@ -97,7 +90,6 @@ module.exports = async options =>
       ),
       new WebpackNotifierPlugin({
         title: 'Code Challenge',
-        contentImage: path.join(__dirname, 'logo-jhipster.png'),
       }),
     ].filter(Boolean),
   });

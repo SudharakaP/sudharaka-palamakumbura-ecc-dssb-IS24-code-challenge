@@ -32,102 +32,87 @@ const getTsLoaderRule = env => {
 
 module.exports = async options => {
   const development = options.env === 'development';
-  return merge(
-    {
-      cache: {
-        // 1. Set cache type to filesystem
-        type: 'filesystem',
-        cacheDirectory: path.resolve(__dirname, '../build/webpack'),
-        buildDependencies: {
-          // 2. Add your config as buildDependency to get cache invalidation on config change
-          config: [
-            __filename,
-            path.resolve(__dirname, `webpack.${development ? 'dev' : 'prod'}.js`),
-            path.resolve(__dirname, 'environment.js'),
-            path.resolve(__dirname, 'utils.js'),
-            path.resolve(__dirname, '../postcss.config.js'),
-            path.resolve(__dirname, '../tsconfig.json'),
-          ],
-        },
-      },
-      resolve: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
-        modules: ['node_modules'],
-        alias: utils.mapTypescriptAliasToWebpackAlias(),
-        fallback: {
-          path: require.resolve('path-browserify'),
-        },
-      },
-      module: {
-        rules: [
-          {
-            test: /\.tsx?$/,
-            use: getTsLoaderRule(options.env),
-            include: [utils.root('./src/main/webapp/app')],
-            exclude: [utils.root('node_modules')],
-          },
-          /*
-       ,
-       Disabled due to https://github.com/jhipster/generator-jhipster/issues/16116
-       Can be enabled with @reduxjs/toolkit@>1.6.1
-      {
-        enforce: 'pre',
-        test: /\.jsx?$/,
-        loader: 'source-map-loader'
-      }
-      */
+  return merge({
+    cache: {
+      // 1. Set cache type to filesystem
+      type: 'filesystem',
+      cacheDirectory: path.resolve(__dirname, '../build/webpack'),
+      buildDependencies: {
+        // 2. Add your config as buildDependency to get cache invalidation on config change
+        config: [
+          __filename,
+          path.resolve(__dirname, `webpack.${development ? 'dev' : 'prod'}.js`),
+          path.resolve(__dirname, 'environment.js'),
+          path.resolve(__dirname, 'utils.js'),
+          path.resolve(__dirname, '../postcss.config.js'),
+          path.resolve(__dirname, '../tsconfig.json'),
         ],
       },
-      stats: {
-        children: false,
+    },
+    resolve: {
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      modules: ['node_modules'],
+      alias: utils.mapTypescriptAliasToWebpackAlias(),
+      fallback: {
+        path: require.resolve('path-browserify'),
       },
-      plugins: [
-        new webpack.EnvironmentPlugin({
-          // react-jhipster requires LOG_LEVEL config.
-          LOG_LEVEL: development ? 'info' : 'error',
-        }),
-        new webpack.DefinePlugin({
-          DEVELOPMENT: JSON.stringify(development),
-          VERSION: JSON.stringify(environment.VERSION),
-          SERVER_API_URL: JSON.stringify(environment.SERVER_API_URL),
-        }),
-        new ESLintPlugin({
-          baseConfig: {
-            parserOptions: {
-              project: ['../tsconfig.json'],
-            },
-          },
-        }),
-        new ForkTsCheckerWebpackPlugin(),
-        new CopyWebpackPlugin({
-          patterns: [
-            {
-              // https://github.com/swagger-api/swagger-ui/blob/v4.6.1/swagger-ui-dist-package/README.md
-              context: require('swagger-ui-dist').getAbsoluteFSPath(),
-              from: '*.{js,css,html,png}',
-              to: 'swagger-ui/',
-              globOptions: { ignore: ['**/index.html'] },
-            },
-            {
-              from: require.resolve('axios/dist/axios.min.js'),
-              to: 'swagger-ui/',
-            },
-            { from: './src/main/webapp/swagger-ui/', to: 'swagger-ui/' },
-            { from: './src/main/webapp/content/', to: 'content/' },
-            { from: './src/main/webapp/favicon.ico', to: 'favicon.ico' },
-            { from: './src/main/webapp/manifest.webapp', to: 'manifest.webapp' },
-            // jhipster-needle-add-assets-to-webpack - JHipster will add/remove third-party resources in this array
-            { from: './src/main/webapp/robots.txt', to: 'robots.txt' },
-          ],
-        }),
-        new HtmlWebpackPlugin({
-          template: './src/main/webapp/index.html',
-          chunksSortMode: 'auto',
-          inject: 'body',
-          base: '/',
-        }),
+    },
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: getTsLoaderRule(options.env),
+          include: [utils.root('./src/main/webapp/app')],
+          exclude: [utils.root('node_modules')],
+        },
       ],
-    }
-    // jhipster-needle-add-webpack-config - JHipster will add custom config
-  );
+    },
+    stats: {
+      children: false,
+    },
+    plugins: [
+      new webpack.EnvironmentPlugin({
+        LOG_LEVEL: development ? 'info' : 'error',
+      }),
+      new webpack.DefinePlugin({
+        DEVELOPMENT: JSON.stringify(development),
+        VERSION: JSON.stringify(environment.VERSION),
+        SERVER_API_URL: JSON.stringify(environment.SERVER_API_URL),
+      }),
+      new ESLintPlugin({
+        baseConfig: {
+          parserOptions: {
+            project: ['../tsconfig.json'],
+          },
+        },
+      }),
+      new ForkTsCheckerWebpackPlugin(),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            // https://github.com/swagger-api/swagger-ui/blob/v4.6.1/swagger-ui-dist-package/README.md
+            context: require('swagger-ui-dist').getAbsoluteFSPath(),
+            from: '*.{js,css,html,png}',
+            to: 'swagger-ui/',
+            globOptions: { ignore: ['**/index.html'] },
+          },
+          {
+            from: require.resolve('axios/dist/axios.min.js'),
+            to: 'swagger-ui/',
+          },
+          { from: './src/main/webapp/swagger-ui/', to: 'swagger-ui/' },
+          { from: './src/main/webapp/content/', to: 'content/' },
+          { from: './src/main/webapp/favicon.ico', to: 'favicon.ico' },
+          // jhipster-needle-add-assets-to-webpack - JHipster will add/remove third-party resources in this array
+          { from: './src/main/webapp/robots.txt', to: 'robots.txt' },
+        ],
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/main/webapp/index.html',
+        chunksSortMode: 'auto',
+        inject: 'body',
+        base: '/',
+      }),
+    ],
+  });
 };

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!--
+        Added the entity ScrumMaster.
+    -->
+    <changeSet id="20231010004815-1" author="jhipster">
+        <createTable tableName="scrum_master">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+    </changeSet>
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+    -->
+    <changeSet id="20231010004815-1-data" author="sudharaka" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/scrum_master.csv"
+                  separator=";"
+                  tableName="scrum_master"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

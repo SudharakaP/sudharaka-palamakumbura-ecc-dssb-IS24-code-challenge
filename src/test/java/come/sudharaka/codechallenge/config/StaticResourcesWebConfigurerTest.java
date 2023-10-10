@@ -1,6 +1,7 @@
 package come.sudharaka.codechallenge.config;
 
-import static come.sudharaka.codechallenge.config.StaticResourcesWebConfiguration.*;
+import static come.sudharaka.codechallenge.config.StaticResourcesWebConfiguration.RESOURCE_LOCATIONS;
+import static come.sudharaka.codechallenge.config.StaticResourcesWebConfiguration.RESOURCE_PATHS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
