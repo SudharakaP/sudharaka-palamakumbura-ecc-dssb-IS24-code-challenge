@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Button, Col, Row } from 'reactstrap';
-import { ValidatedField, ValidatedForm, isEmail } from 'react-jhipster';
+import { isEmail, ValidatedField, ValidatedForm } from 'react-jhipster';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { getSession } from 'app/shared/reducers/authentication';
-import { saveAccountSettings, reset } from './settings.reducer';
+import { reset, saveAccountSettings } from './settings.reducer';
 
 export const SettingsPage = () => {
   const dispatch = useAppDispatch();

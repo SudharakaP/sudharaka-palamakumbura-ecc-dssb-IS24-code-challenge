@@ -9,12 +9,12 @@ import reducer, {
   deleteEntity,
   getEntities,
   getEntity,
-  updateEntity,
   partialUpdateEntity,
   reset,
+  updateEntity,
 } from './product-owner.reducer';
 import { EntityState } from 'app/shared/reducers/reducer.utils';
-import { IProductOwner, defaultValue } from 'app/shared/model/product-owner.model';
+import { defaultValue, IProductOwner } from 'app/shared/model/product-owner.model';
 
 describe('Entities reducer tests', () => {
   function isEmpty(element): boolean {

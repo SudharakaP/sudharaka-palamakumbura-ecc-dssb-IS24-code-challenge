@@ -3,7 +3,7 @@ import axios from 'axios';
 import sinon from 'sinon';
 import configureStore from 'redux-mock-store';
 
-import password, { savePassword, reset } from './password.reducer';
+import password, { reset, savePassword } from './password.reducer';
 
 describe('Password reducer tests', () => {
   describe('Common tests', () => {

@@ -1,4 +1,4 @@
-import { userManagementPageHeadingSelector, swaggerPageSelector, swaggerFrameSelector } from '../../support/commands';
+import { swaggerFrameSelector, swaggerPageSelector, userManagementPageHeadingSelector } from '../../support/commands';
 
 describe('/admin', () => {
   const username = Cypress.env('E2E_USERNAME') ?? 'admin';

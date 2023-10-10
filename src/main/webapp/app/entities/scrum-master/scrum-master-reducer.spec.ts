@@ -9,12 +9,12 @@ import reducer, {
   deleteEntity,
   getEntities,
   getEntity,
-  updateEntity,
   partialUpdateEntity,
   reset,
+  updateEntity,
 } from './scrum-master.reducer';
 import { EntityState } from 'app/shared/reducers/reducer.utils';
-import { IScrumMaster, defaultValue } from 'app/shared/model/scrum-master.model';
+import { defaultValue, IScrumMaster } from 'app/shared/model/scrum-master.model';
 
 describe('Entities reducer tests', () => {
   function isEmpty(element): boolean {

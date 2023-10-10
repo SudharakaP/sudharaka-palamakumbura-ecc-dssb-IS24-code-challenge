@@ -4,9 +4,9 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import sinon from 'sinon';
 
-import reducer, { createEntity, deleteEntity, getEntities, getEntity, updateEntity, partialUpdateEntity, reset } from './product.reducer';
+import reducer, { createEntity, deleteEntity, getEntities, getEntity, partialUpdateEntity, reset, updateEntity } from './product.reducer';
 import { EntityState } from 'app/shared/reducers/reducer.utils';
-import { IProduct, defaultValue } from 'app/shared/model/product.model';
+import { defaultValue, IProduct } from 'app/shared/model/product.model';
 
 describe('Entities reducer tests', () => {
   function isEmpty(element): boolean {

@@ -1,6 +1,5 @@
 package come.sudharaka.codechallenge;
 
-import come.sudharaka.codechallenge.CodeChallengeApp;
 import come.sudharaka.codechallenge.config.AsyncSyncConfiguration;
 import come.sudharaka.codechallenge.config.EmbeddedSQL;
 import java.lang.annotation.ElementType;

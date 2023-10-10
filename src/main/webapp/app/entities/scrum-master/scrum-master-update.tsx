@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Button, Row, Col, FormText } from 'reactstrap';
-import { isNumber, ValidatedField, ValidatedForm } from 'react-jhipster';
+import { Button, Col, Row } from 'reactstrap';
+import { ValidatedField, ValidatedForm } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
-import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
-
-import { IScrumMaster } from 'app/shared/model/scrum-master.model';
-import { getEntity, updateEntity, createEntity, reset } from './scrum-master.reducer';
+import { createEntity, getEntity, reset, updateEntity } from './scrum-master.reducer';
 
 export const ScrumMasterUpdate = () => {
   const dispatch = useAppDispatch();

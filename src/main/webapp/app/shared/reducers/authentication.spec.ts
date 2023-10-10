@@ -5,17 +5,17 @@ import { Storage } from 'react-jhipster';
 import configureStore from 'redux-mock-store';
 
 import authentication, {
-  getSession,
-  getAccount,
   authenticate,
-  login,
-  clearAuthentication,
-  logout,
-  logoutSession,
-  clearAuthToken,
   authError,
   clearAuth,
+  clearAuthentication,
+  clearAuthToken,
+  getAccount,
+  getSession,
   initialState,
+  login,
+  logout,
+  logoutSession,
 } from 'app/shared/reducers/authentication';
 
 describe('Authentication reducer tests', () => {

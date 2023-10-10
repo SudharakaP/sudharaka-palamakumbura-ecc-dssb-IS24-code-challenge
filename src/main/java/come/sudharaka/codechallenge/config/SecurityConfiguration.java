@@ -1,7 +1,8 @@
 package come.sudharaka.codechallenge.config;
 
-import come.sudharaka.codechallenge.security.*;
-import come.sudharaka.codechallenge.security.jwt.*;
+import come.sudharaka.codechallenge.security.AuthoritiesConstants;
+import come.sudharaka.codechallenge.security.jwt.JWTConfigurer;
+import come.sudharaka.codechallenge.security.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;

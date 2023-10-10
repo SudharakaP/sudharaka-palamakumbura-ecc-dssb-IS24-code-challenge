@@ -2,7 +2,8 @@ package come.sudharaka.codechallenge.web.rest;
 
 import static come.sudharaka.codechallenge.web.rest.AccountResourceIT.TEST_USER_LOGIN;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import come.sudharaka.codechallenge.IntegrationTest;
@@ -14,11 +15,13 @@ import come.sudharaka.codechallenge.security.AuthoritiesConstants;
 import come.sudharaka.codechallenge.service.UserService;
 import come.sudharaka.codechallenge.service.dto.AdminUserDTO;
 import come.sudharaka.codechallenge.service.dto.PasswordChangeDTO;
-import come.sudharaka.codechallenge.service.dto.UserDTO;
 import come.sudharaka.codechallenge.web.rest.vm.KeyAndPasswordVM;
 import come.sudharaka.codechallenge.web.rest.vm.ManagedUserVM;
 import java.time.Instant;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { IDeveloper } from 'app/shared/model/developer.model';
 import { IScrumMaster } from 'app/shared/model/scrum-master.model';
 import { IProductOwner } from 'app/shared/model/product-owner.model';

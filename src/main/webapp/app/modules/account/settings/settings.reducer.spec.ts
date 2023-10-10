@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import axios from 'axios';
 import sinon from 'sinon';
 
-import account, { updateAccount, saveAccountSettings, reset } from './settings.reducer';
+import account, { reset, saveAccountSettings, updateAccount } from './settings.reducer';
 import { getAccount } from 'app/shared/reducers/authentication';
 
 describe('Settings reducer tests', () => {
