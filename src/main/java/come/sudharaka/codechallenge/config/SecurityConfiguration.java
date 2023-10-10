@@ -1,7 +1,7 @@
 package come.sudharaka.codechallenge.config;
 
-import come.sudharaka.codechallenge.security.*;
-import come.sudharaka.codechallenge.security.jwt.*;
+import come.sudharaka.codechallenge.security.jwt.JWTConfigurer;
+import come.sudharaka.codechallenge.security.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
@@ -84,13 +84,13 @@ public class SecurityConfiguration {
             .antMatchers("/api/activate").permitAll()
             .antMatchers("/api/account/reset-password/init").permitAll()
             .antMatchers("/api/account/reset-password/finish").permitAll()
-            .antMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/api/**").authenticated()
+            .antMatchers("/api/admin/**").permitAll()
+            .antMatchers("/api/**").permitAll()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/health/**").permitAll()
             .antMatchers("/management/info").permitAll()
             .antMatchers("/management/prometheus").permitAll()
-            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/management/**").permitAll()
         .and()
             .httpBasic()
         .and()

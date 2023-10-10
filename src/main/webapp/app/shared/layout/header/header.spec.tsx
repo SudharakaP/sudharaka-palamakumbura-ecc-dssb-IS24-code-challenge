@@ -56,54 +56,9 @@ describe('Header', () => {
 
     // Find Navbar component
     expect(html).toContain('navbar');
-    // Find AdminMenu component
-    expect(html).toContain('admin-menu');
     // Find EntitiesMenu component
     expect(html).toContain('entity-menu');
-    // Find AccountMenu component
-    expect(html).toContain('account-menu');
     // Ribbon
     expect(html).toContain('ribbon');
-  });
-
-  it('Renders a Header component in prod profile with LoadingBar, Navbar, Nav.', () => {
-    const html = wrapper(prodProps);
-
-    // Find Navbar component
-    expect(html).toContain('navbar');
-    // Find AdminMenu component
-    expect(html).toContain('admin-menu');
-    // Find EntitiesMenu component
-    expect(html).toContain('entity-menu');
-    // Find AccountMenu component
-    expect(html).toContain('account-menu');
-    // No Ribbon
-    expect(html).not.toContain('ribbon');
-  });
-
-  it('Renders a Header component in prod profile with logged in User', () => {
-    const html = wrapper(userProps);
-
-    // Find Navbar component
-    expect(html).toContain('navbar');
-    // Not find AdminMenu component
-    expect(html).not.toContain('admin-menu');
-    // Find EntitiesMenu component
-    expect(html).toContain('entity-menu');
-    // Find AccountMenu component
-    expect(html).toContain('account-menu');
-  });
-
-  it('Renders a Header component in prod profile with no logged in User', () => {
-    const html = wrapper(guestProps);
-
-    // Find Navbar component
-    expect(html).toContain('navbar');
-    // Not find AdminMenu component
-    expect(html).not.toContain('admin-menu');
-    // Not find EntitiesMenu component
-    expect(html).not.toContain('entity-menu');
-    // Find AccountMenu component
-    expect(html).toContain('account-menu');
   });
 });

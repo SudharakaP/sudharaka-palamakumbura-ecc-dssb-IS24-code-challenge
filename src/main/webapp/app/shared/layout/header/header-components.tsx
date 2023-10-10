@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { NavItem, NavLink, NavbarBrand } from 'reactstrap';
+import { NavbarBrand, NavItem, NavLink } from 'reactstrap';
 import { NavLink as Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const BrandIcon = props => (
   <div {...props} className="brand-icon">
-    <img src="content/images/logo-jhipster.png" alt="Logo" />
+    <img src="content/images/BC-Gov-Logo.png" alt="Logo" />
   </div>
 );
 
@@ -18,11 +18,11 @@ export const Brand = () => (
   </NavbarBrand>
 );
 
-export const Home = () => (
+export const Products = () => (
   <NavItem>
     <NavLink tag={Link} to="/" className="d-flex align-items-center">
       <FontAwesomeIcon icon="home" />
-      <span>Home</span>
+      <span>Products</span>
     </NavLink>
   </NavItem>
 );
