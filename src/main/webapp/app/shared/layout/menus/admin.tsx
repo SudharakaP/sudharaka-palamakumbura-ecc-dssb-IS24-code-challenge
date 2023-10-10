@@ -4,15 +4,6 @@ import { DropdownItem } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavDropdown } from './menu-components';
 
-const adminMenuItems = () => (
-  <>
-    <MenuItem icon="users" to="/admin/user-management">
-      User management
-    </MenuItem>
-    {/* jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here */}
-  </>
-);
-
 const openAPIItem = () => (
   <MenuItem icon="book" to="/admin/docs">
     API
@@ -27,9 +18,7 @@ const databaseItem = () => (
 
 export const AdminMenu = ({ showOpenAPI, showDatabase }) => (
   <NavDropdown icon="users-cog" name="Administration" id="admin-menu" data-cy="adminMenu">
-    {adminMenuItems()}
     {showOpenAPI && openAPIItem()}
-
     {showDatabase && databaseItem()}
   </NavDropdown>
 );
