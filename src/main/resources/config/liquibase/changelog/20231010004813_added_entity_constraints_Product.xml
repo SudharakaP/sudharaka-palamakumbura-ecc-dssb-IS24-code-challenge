@@ -48,8 +48,8 @@
             separator=";"
             tableName="rel_product__developer"
             usePreparedStatements="true">
-            <column name="developer_id" type="bigint"/>
-            <column name="product_id" type="bigint"/>
+            <column name="developer_id" type="numeric"/>
+            <column name="product_id" type="numeric"/>
         </loadData>
     </changeSet>
 </databaseChangeLog>
