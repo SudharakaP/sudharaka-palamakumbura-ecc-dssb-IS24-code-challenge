@@ -108,7 +108,7 @@ export const ProductUpdate = () => {
                 {developers
                   ? developers.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.name}
                       </option>
                     ))
                   : null}
@@ -118,7 +118,7 @@ export const ProductUpdate = () => {
                 {scrumMasters
                   ? scrumMasters.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.name}
                       </option>
                     ))
                   : null}
@@ -128,7 +128,7 @@ export const ProductUpdate = () => {
                 {productOwners
                   ? productOwners.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.name}
                       </option>
                     ))
                   : null}
