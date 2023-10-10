@@ -19,12 +19,17 @@ const apiUrl = 'api/products';
 
 // Actions
 
-export const getEntities = createAsyncThunk('product/fetch_entity_list', async ({ page, size, sort }: IQueryParams) => {
-  const requestUrl = `${apiUrl}${
-    sort ? `?page=${page}&size=${size}&sort=${sort}&` : '?'
-  }eagerload=true&cacheBuster=${new Date().getTime()}`;
-  return axios.get<IProduct[]>(requestUrl);
-});
+export const getEntities = createAsyncThunk(
+  'product/fetch_entity_list',
+  async ({ page, size, sort, scrumMasterId, developerId }: IQueryParams) => {
+    const requestUrl = `${apiUrl}${
+      sort ? `?page=${page}&size=${size}&sort=${sort}&` : '?'
+    }eagerload=true&cacheBuster=${new Date().getTime()}${scrumMasterId !== '0' ? `&filterByScrumMasterId=${scrumMasterId}` : ''}${
+      developerId !== '0' ? `&filterByDeveloperId=${developerId}` : ''
+    }`;
+    return axios.get<IProduct[]>(requestUrl);
+  }
+);
 
 export const getEntity = createAsyncThunk(
   'product/fetch_entity',

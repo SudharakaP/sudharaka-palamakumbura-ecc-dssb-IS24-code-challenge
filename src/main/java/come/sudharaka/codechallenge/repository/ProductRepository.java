@@ -27,4 +27,12 @@ public interface ProductRepository extends ProductRepositoryWithBagRelationships
     default Page<Product> findAllWithEagerRelationships(Pageable pageable) {
         return this.fetchBagRelationships(this.findAll(pageable));
     }
+
+    default Page<Product> findByScrumMasterId(long scrumMasterId, Pageable pageable) {
+        return this.fetchProductsByScrumMasterId(scrumMasterId, this.findAll(pageable));
+    }
+
+    default Page<Product> findByDeveloperId(long developerId, Pageable pageable) {
+        return this.fetchProductsByDeveloperId(developerId, this.findAll(pageable));
+    }
 }

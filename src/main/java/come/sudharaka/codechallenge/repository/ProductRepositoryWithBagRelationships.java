@@ -11,4 +11,8 @@ public interface ProductRepositoryWithBagRelationships {
     List<Product> fetchBagRelationships(List<Product> products);
 
     Page<Product> fetchBagRelationships(Page<Product> products);
+
+    Page<Product> fetchProductsByScrumMasterId(long scrumMasterId, Page<Product> products);
+
+    Page<Product> fetchProductsByDeveloperId(long developerId, Page<Product> products);
 }

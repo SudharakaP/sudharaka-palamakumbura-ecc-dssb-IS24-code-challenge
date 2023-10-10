@@ -35,6 +35,50 @@ public class ProductRepositoryWithBagRelationshipsImpl implements ProductReposit
         return Optional.of(products).map(this::fetchDevelopers).orElse(Collections.emptyList());
     }
 
+    @Override
+    public Page<Product> fetchProductsByScrumMasterId(long scrumMasterId, Page<Product> products) {
+        return new PageImpl<>(
+            fetchProductsByScrumMasterOrDeveloper(scrumMasterId, 0, products.getContent()),
+            products.getPageable(),
+            products.getTotalElements()
+        );
+    }
+
+    @Override
+    public Page<Product> fetchProductsByDeveloperId(long developerId, Page<Product> products) {
+        return new PageImpl<>(
+            fetchProductsByScrumMasterOrDeveloper(0, developerId, products.getContent()),
+            products.getPageable(),
+            products.getTotalElements()
+        );
+    }
+
+    List<Product> fetchProductsByScrumMasterOrDeveloper(long scrumMasterId, long developerId, List<Product> products) {
+        if (scrumMasterId == 0 && developerId == 0) {
+            return products;
+        } else if (scrumMasterId != 0) {
+            return entityManager
+                .createQuery(
+                    "select distinct product from Product product left join fetch product.developers where scrum_master_id is :scrumMasterId and product in :products",
+                    Product.class
+                )
+                .setParameter("scrumMasterId", scrumMasterId)
+                .setParameter("products", products)
+                .setHint(QueryHints.PASS_DISTINCT_THROUGH, false)
+                .getResultList();
+        } else {
+            return entityManager
+                .createQuery(
+                    "select distinct product from Product product left join fetch product.developers where developer_id is :developerId and product in :products",
+                    Product.class
+                )
+                .setParameter("developerId", developerId)
+                .setParameter("products", products)
+                .setHint(QueryHints.PASS_DISTINCT_THROUGH, false)
+                .getResultList();
+        }
+    }
+
     Product fetchDevelopers(Product result) {
         return entityManager
             .createQuery("select product from Product product left join fetch product.developers where product is :product", Product.class)

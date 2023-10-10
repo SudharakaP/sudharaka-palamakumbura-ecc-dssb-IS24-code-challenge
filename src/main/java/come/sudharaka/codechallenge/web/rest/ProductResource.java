@@ -159,11 +159,18 @@ public class ProductResource {
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getAllProducts(
         @org.springdoc.api.annotations.ParameterObject Pageable pageable,
-        @RequestParam(required = false, defaultValue = "false") boolean eagerload
+        @RequestParam(required = false, defaultValue = "false") boolean eagerload,
+        @RequestParam(required = false) String filterByScrumMasterId,
+        @RequestParam(required = false) String filterByDeveloperId
     ) {
         log.debug("REST request to get a page of Products");
         Page<Product> page;
-        if (eagerload) {
+        System.out.println(filterByDeveloperId);
+        if (filterByScrumMasterId != null) {
+            page = productRepository.findByScrumMasterId(Long.parseLong(filterByScrumMasterId), pageable);
+        } else if (filterByDeveloperId != null) {
+            page = productRepository.findByDeveloperId(Long.parseLong(filterByDeveloperId), pageable);
+        } else if (eagerload) {
             page = productRepository.findAllWithEagerRelationships(pageable);
         } else {
             page = productRepository.findAll(pageable);

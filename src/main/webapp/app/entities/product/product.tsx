@@ -9,6 +9,11 @@ import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.cons
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { getEntities } from './product.reducer';
+import { getEntities as getDevelopers } from 'app/entities/developer/developer.reducer';
+import { getEntities as getScrumMasters } from 'app/entities/scrum-master/scrum-master.reducer';
+import ReactSearchBox from 'react-search-box';
+import { Input } from 'reactstrap';
+import scrumMaster from 'app/entities/scrum-master/scrum-master.reducer';
 
 export const Product = () => {
   const dispatch = useAppDispatch();
@@ -16,22 +21,31 @@ export const Product = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [filterBy, setFilterBy] = useState({ key: 'SCRUM_MASTER', value: 'Scrum Master' });
+
   const [paginationState, setPaginationState] = useState(
     overridePaginationStateWithQueryParams(getSortState(location, ITEMS_PER_PAGE, 'id'), location.search)
   );
 
   const productList = useAppSelector(state => state.product.entities);
+  const developerList = useAppSelector(state => state.developer.entities);
+  const scrumMasterList = useAppSelector(state => state.scrumMaster.entities);
   const loading = useAppSelector(state => state.product.loading);
   const totalItems = useAppSelector(state => state.product.totalItems);
 
-  const getAllEntities = () => {
+  const getAllEntities = (scrumMasterId = '0', developerId = '0') => {
     dispatch(
       getEntities({
         page: paginationState.activePage - 1,
         size: paginationState.itemsPerPage,
         sort: `${paginationState.sort},${paginationState.order}`,
+        scrumMasterId: scrumMasterId,
+        developerId: developerId,
       })
     );
+
+    dispatch(getDevelopers({}));
+    dispatch(getScrumMasters({}));
   };
 
   const sortEntities = () => {
@@ -79,6 +93,11 @@ export const Product = () => {
     sortEntities();
   };
 
+  const filterOptions = [
+    { key: 'SCRUM_MASTER', value: 'Scrum Master' },
+    { key: 'DEVELOPER', value: 'Developer' },
+  ];
+
   return (
     <div>
       <h2 id="product-heading" data-cy="ProductHeading">
@@ -94,6 +113,34 @@ export const Product = () => {
         </div>
       </h2>
       <div className="table-responsive">
+        <div className="row pb-2">
+          <div className="col-auto">
+            <Input
+              id="searchSelect"
+              type="select"
+              onChange={({ target }) => setFilterBy(filterOptions.find(element => element.value === target.value))}
+            >
+              {filterOptions.map(filterBy => (
+                <option value={filterBy.value}>{filterBy.value}</option>
+              ))}
+            </Input>
+          </div>
+          <div className="col-auto">
+            <ReactSearchBox
+              data={
+                filterBy.key === 'SCRUM_MASTER'
+                  ? scrumMasterList.map(scrumMaster => ({ key: scrumMaster.id, value: scrumMaster.name }))
+                  : developerList.map(developer => ({ key: developer.id, value: developer.name }))
+              }
+              onSelect={({ item }) => {
+                filterBy.key === 'SCRUM_MASTER' ? getAllEntities(item.key, '0') : getAllEntities('0', item.key);
+              }}
+              onChange={() => {}}
+              placeholder={`Filter by ${filterBy.value}`}
+            />
+          </div>
+        </div>
+
         {productList && productList.length > 0 ? (
           <Table responsive>
             <thead>
