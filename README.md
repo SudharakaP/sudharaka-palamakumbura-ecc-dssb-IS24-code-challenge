@@ -56,8 +56,9 @@ npm test
 
 ## Demo (Method 1)
 
-[Demo-Challenge.webm](https://github.com/SudharakaP/sudharaka-palamakumbura-ecc-dssb-IS24-code-challenge/assets/12435965/fdd37126-eb4a-4430-81a1-d640aa12a8f2)
+[Demo-Challenge.webm](https://github.com/SudharakaP/sudharaka-palamakumbura-ecc-dssb-IS24-code-challenge/assets/12435965/0c760c0b-812f-45a4-9cb1-5620a89b92b4)
 
 ## Demo (Method 2)
 
-[demo-2.webm](https://github.com/SudharakaP/sudharaka-palamakumbura-ecc-dssb-IS24-code-challenge/assets/12435965/e3983167-1f78-43fa-9f75-c46eaecfd40a)
+[demo-2.webm](https://github.com/SudharakaP/sudharaka-palamakumbura-ecc-dssb-IS24-code-challenge/assets/12435965/e335667e-55be-468f-90de-e64fce805a80)
+
