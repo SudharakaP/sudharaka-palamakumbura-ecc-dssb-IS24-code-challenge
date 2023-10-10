@@ -1,0 +1,36 @@
+entity Product {
+    productName String
+    startDate LocalDate
+    methodology Methodology
+    location String
+}
+
+entity Developer {
+	name String
+}
+
+entity ScrumMaster {
+	name String
+}
+
+entity ProductOwner {
+	name String
+}
+
+enum Methodology {
+	WATERFALL, AGILE
+}
+
+relationship ManyToMany {
+	Product{developer} to Developer{product}
+}
+
+relationship OneToMany {
+ 	ScrumMaster{product} to Product{scrumMaster}
+}
+
+relationship OneToMany {
+	ProductOwner{product} to Product{productOwner}
+}
+
+paginate Product, Developer, ScrumMaster, ProductOwner with pagination

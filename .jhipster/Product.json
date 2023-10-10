@@ -1,0 +1,53 @@
+{
+  "applications": "*",
+  "changelogDate": "20231010004813",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "product",
+  "fields": [
+    {
+      "fieldName": "productName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "methodology",
+      "fieldType": "Methodology",
+      "fieldValues": "WATERFALL,AGILE"
+    },
+    {
+      "fieldName": "location",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Product",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "developer",
+      "otherEntityRelationshipName": "product",
+      "ownerSide": true,
+      "relationshipName": "developer",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "scrumMaster",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "scrumMaster",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "productOwner",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "productOwner",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

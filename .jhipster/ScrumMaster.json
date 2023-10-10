@@ -1,0 +1,27 @@
+{
+  "applications": "*",
+  "changelogDate": "20231010004815",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "scrum_master",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ScrumMaster",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "product",
+      "otherEntityRelationshipName": "scrumMaster",
+      "relationshipName": "product",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,27 @@
+{
+  "applications": "*",
+  "changelogDate": "20231010004816",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "product_owner",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ProductOwner",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "product",
+      "otherEntityRelationshipName": "productOwner",
+      "relationshipName": "product",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}
